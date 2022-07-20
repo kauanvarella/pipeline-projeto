@@ -8,5 +8,15 @@ pipeline {
                 sh 'terraform --version'
             }
         }
+        stage('Iniciando o Terraform') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+        stage('Aplicando o Terraform') {
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
     }
 }
