@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-                echo 'Hello World"'
+                mkdir '/home/ubuntu/teste10'
+                echo 'Hello World'
                 // sh 'terraform --version'
                 // sh 'ansible --version'
             }
