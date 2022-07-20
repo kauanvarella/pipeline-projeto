@@ -1,6 +1,7 @@
 pipeline:
   agent: 
     any:
+  image: kauanvarella/projeto:latest
   environment:
     AWS_ACCESS_KEY_ID: "AKIASDLSQKOMKAS3AXOA"
     AWS_SECRET_ACCESS_KEY: "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"
