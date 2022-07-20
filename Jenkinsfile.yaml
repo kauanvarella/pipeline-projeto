@@ -11,6 +11,5 @@ pipeline:
         - terraform init
 
     - stage: "Aplicando o Terraform"
-      steps
+      steps:
         - terraform apply -auto-approve
-        
