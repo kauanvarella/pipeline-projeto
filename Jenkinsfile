@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Configurando AWS') {
             steps {
-                sh 'aws configure set default.region us-west-2'
+                sh 'aws configure'
             }
         }
         stage('Iniciando o Terraform') {
