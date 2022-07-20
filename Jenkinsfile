@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'kauanvarella/projeto:latest' }
+    }
     stages {
         stage('Test') {
             steps {
