@@ -6,6 +6,7 @@ pipeline {
         stage('Test1') {
             steps {
                 sh 'terraform --version'
+                sh 'python --version'
             }
         }
 
