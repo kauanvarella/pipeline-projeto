@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Iniciando o Terraform') {
             steps {
-                sh 'git clone https://github.com/kauanvarella/projeto.git'
+                sh 'ls'
                 sh 'terraform init'
             }
         }
