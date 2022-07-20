@@ -6,9 +6,11 @@ pipeline {
         AWS_DEFAULT_REGION="us-west-2" 
     }
     stages {
-        stage('Step 1 AWS') {
+        stage('Destruindo a Infra existente') {
             steps {
-                echo '1 Passou'
+                withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    sh 'terraform destroy -auto-approve'
+                }  
             }
         }
         stage('Iniciando o Terraform') {
