@@ -3,8 +3,8 @@ pipeline {
         docker { image 'kauanvarella/projeto:latest' }
     }
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('AKIASDLSQKOMKAS3AXOA')
-        AWS_SECRET_ACCESS_KEY = credentials('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')
+        aws_access_key_id = credentials('AKIASDLSQKOMKAS3AXOA')
+        aws_secret_access_key = credentials('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')
     }
     stages {
         stage('Step 1 AWS') {
