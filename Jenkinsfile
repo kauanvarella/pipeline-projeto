@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'kauanvarella/projeto:teste' }
+        docker { image 'kauanvarella/projeto:latest' }
     }
     stages {
         stage('Test1') {
@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Iniciando o Terraform') {
             steps {
+                sh 'cd /home/ubuntu/.jenkins/workspace/teste'
                 sh 'terraform init'
             }
         }
