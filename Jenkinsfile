@@ -8,6 +8,7 @@ pipeline {
                 sh 'export AWS_ACCESS_KEY_ID=AKIASDLSQKOMKAS3AXOA'
                 sh 'export AWS_SECRET_ACCESS_KEY=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'
                 sh 'export AWS_DEFAULT_REGION=us-west-2'
+                sh 'aws configure'
             }
         }
         stage('Iniciando o Terraform') {
