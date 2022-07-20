@@ -1,15 +1,15 @@
 variable "regiao_aws" {
-  type = string
+  default = "us-west-2"
 }
 
 variable "chave" {
-  type = string
+  default = "ssh-prod-meuapp"
 }
 
 variable "instancia" {
-  type = string
+  default = "t2.micro"
 }
 
 variable "gruposeguranca" {
-  type = string
+  default = "acesso_prod"
 }
