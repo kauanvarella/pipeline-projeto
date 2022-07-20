@@ -1,18 +1,11 @@
 pipeline {
     agent {
-        docker { image 'kauanvarella/projeto:latest' }
+        docker { image 'kauanvarella/projeto:teste' }
     }
     stages {
         stage('Test1') {
             steps {
                 sh 'terraform --version'
-                sh 'python --version'
-            }
-        }
-
-        stage('Test2') {
-            steps {
-                sh 'ansible --version'
             }
         }
     }
