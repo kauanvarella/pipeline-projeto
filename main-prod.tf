@@ -1,5 +1,5 @@
 module "aws-prod" {
-  source = "../../infra"
+  source = "./"
   instancia = "t2.micro"
   regiao_aws = "us-west-2"
   chave = "ssh-prod-meuapp"

@@ -10,12 +10,7 @@ pipeline {
         }
         stage('Iniciando o Terraform') {
             steps {
-                sh 'cd /home/ubuntu/.jenkins/workspace/teste/env/prod'
                 sh 'pwd'
-                sh 'ls'
-                sh 'cd /home/ubuntu/.jenkins/workspace/teste/env/prod'
-                sh 'pwd'
-                sh 'ls'
                 sh 'terraform init'
             }
         }
