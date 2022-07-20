@@ -3,8 +3,7 @@ pipeline {
         docker { image 'kauanvarella/projeto:latest' }
     }
     environment {
-        AWS_ACCESS_KEY_ID     = credentials('AKIASDLSQKOMKAS3AXOA')
-        AWS_SECRET_ACCESS_KEY = credentials('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')
+        AWS_DEFAULT_REGION="us-west-2" 
     }
     stages {
         stage('Step 1 AWS') {
@@ -14,14 +13,16 @@ pipeline {
         }
         stage('Iniciando o Terraform') {
             steps {
-                sh "aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID"
-                sh "aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY"
-                sh 'terraform init'
+                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+                    sh 'terraform init'
+                }              
             }
         }
         stage('Aplicando o Terraform') {
             steps {
-                sh 'terraform apply -auto-approve'
+                withCredentials([<object of type com.cloudbees.jenkins.plugins.awscredentials.AmazonWebServicesCredentialsBinding>]) {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
