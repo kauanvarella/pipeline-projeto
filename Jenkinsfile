@@ -6,11 +6,12 @@ pipeline {
         stage('Step 1 AWS') {
             steps {
                 echo '1 Passou'
+                sh 'apt-get install git'
             }
         }
         stage('Iniciando o Terraform') {
             steps {
-                sh 'pwd'
+                sh 'git clone https://github.com/kauanvarella/projeto.git'
                 sh 'terraform init'
             }
         }
