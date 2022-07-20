@@ -1,0 +1,16 @@
+pipeline:
+  agent: 
+    any:
+  environment:
+    AWS_ACCESS_KEY_ID: "AKIASDLSQKOMKAS3AXOA"
+    AWS_SECRET_ACCESS_KEY: "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"
+    PRIVATE_KEY = "ssh-prod-meuapp.pem"
+  stages:
+    - stage: "Iniciando o Terraform"
+      steps:
+        - terraform init
+
+    - stage: "Aplicando o Terraform"
+      steps
+        - terraform apply -auto-approve
+        
