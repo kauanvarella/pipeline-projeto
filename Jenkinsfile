@@ -5,10 +5,7 @@ pipeline {
     stages {
         stage('Step 1 AWS') {
             steps {
-                sh 'pwd'
-                sh 'terraform --version'
-                sh 'cd /root/.aws'
-                sh 'cat credentials'
+                echo '1 Passou'
             }
         }
         stage('Iniciando o Terraform') {
