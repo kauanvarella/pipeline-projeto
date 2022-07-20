@@ -5,10 +5,9 @@ pipeline {
     stages {
         stage('Configurando AWS') {
             steps {
-                sh 'export AWS_ACCESS_KEY_ID=AKIASDLSQKOMKAS3AXOA'
-                sh 'export AWS_SECRET_ACCESS_KEY=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'
-                sh 'export AWS_DEFAULT_REGION=us-west-2'
-                sh 'aws configure'
+                sh 'aws configure set aws_access_key_id AKIASDLSQKOMKAS3AXOA'
+                sh 'aws configure set aws_secret_access_key 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'
+                sh 'aws configure set default.region us-west-2'
             }
         }
         stage('Iniciando o Terraform') {
