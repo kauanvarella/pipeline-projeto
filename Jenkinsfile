@@ -5,12 +5,11 @@ pipeline {
     environment { 
         aws_access_key_id = 'AKIASDLSQKOMKAS3AXOA'
         aws_secret_access_key = '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'
-        default.region = 'us-west-2'
     }
     stages {
         stage('Configurando AWS') {
             steps {
-                sh 'aws configure'
+                sh 'aws configure set default.region us-west-2'
             }
         }
         stage('Iniciando o Terraform') {
