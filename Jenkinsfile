@@ -6,6 +6,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'terraform --version'
+                sh 'ansible --version'
             }
         }
     }
