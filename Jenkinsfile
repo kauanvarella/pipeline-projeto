@@ -10,11 +10,6 @@ pipeline {
         }
         stage('Iniciando o Terraform') {
             steps {
-                sh 'cd'
-                sh 'pwd'
-                sh 'cd ..'
-                sh 'pwd'
-                sh 'cat root/.aws/credentials'
                 sh 'terraform init'
             }
         }
