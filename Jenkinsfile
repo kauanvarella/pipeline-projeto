@@ -10,7 +10,6 @@ pipeline {
         }
 
         stage('Test2') {
-            become{ true }
             steps {
                 sh 'ansible --version'
             }
