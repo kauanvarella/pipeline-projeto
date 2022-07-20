@@ -6,7 +6,6 @@ pipeline {
         stage('Step 1 AWS') {
             steps {
                 echo '1 Passou'
-                sh 'apt-get install git'
             }
         }
         stage('Iniciando o Terraform') {
