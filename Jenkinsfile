@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Ansible') {
             steps {
-                sh 'export PATH=$PATH:/root/bin'
+                sh 'export PATH=$PATH:/bin'
                 ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
             }
         }
