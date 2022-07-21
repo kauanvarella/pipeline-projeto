@@ -16,7 +16,7 @@ pipeline {
         stage('Conexao SSH') {
             steps {         
                 withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp')]) {
-                    sh 'Hello, World!'
+                    sh 'echo Hello, World!'
                     sh 'pwd'
                 }  
             }
