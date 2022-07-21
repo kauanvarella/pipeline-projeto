@@ -17,7 +17,7 @@ pipeline {
             steps {         
                 withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp')]) {
                     sh 'echo Hello, World!'
-                    sh 'pwd'
+                    sh 'mkdir teste'
                 }  
             }
             
