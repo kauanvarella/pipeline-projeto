@@ -15,10 +15,12 @@ pipeline {
         }
         stage('Conexao SSH') {
             steps {         
-                withCredentials([sshUserPrivateKey(credentialsId: 'terraform-aws', keyFileVariable: 'ssh-prod-meuapp', usernameVariable: 'SSH_AWS_SERVER')]) {
-                    sh 'echo Hello, World!'
-                }    
+                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp')]) {
+                    sh 'Hello, World!'
+                    sh 'pwd'
+                }  
             }
+            
         }
     }
 }
