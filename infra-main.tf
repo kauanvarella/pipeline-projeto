@@ -25,7 +25,7 @@ resource "aws_instance" "app_server" {
 
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.app_server.id
-  allocation_id = "eipalloc-0f9e51a2e142761f1"
+  allocation_id = "eipalloc-043143858d9147b05"
 }
 
 # output "IP_publico" {
