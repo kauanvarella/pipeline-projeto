@@ -14,10 +14,10 @@ pipeline {
             }
         }
         stage('Conexao SSH') {
-            steps {
-                sh 'aws --version'
-                sh 'echo Hello, World!'
-                sh 'ssh -i "ssh-prod-meuapp.pem" ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com -y'
+            steps {             
+                sshagent(credentials:['SSH_AWS_SERVER']){
+                    sh 'ssh ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com'
+                }
             }
         }
     }
