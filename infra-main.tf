@@ -20,13 +20,13 @@ resource "aws_instance" "app_server" {
     tags = {
         Name = "meu-app"
     }
-    # associate_public_ip_address = true
+    associate_public_ip_address = true
 }
 
-# resource "aws_eip_association" "eip_assoc" {
-#   instance_id   = aws_instance.app_server.id
-#   allocation_id = "eipalloc-0e639220173a5279a"
-# }
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.app_server.id
+  allocation_id = "eipalloc-0e639220173a5279a"
+}
 
 # output "IP_publico" {
 #   value = aws_instance.app_server.public_ip
