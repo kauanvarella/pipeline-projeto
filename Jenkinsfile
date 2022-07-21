@@ -15,12 +15,10 @@ pipeline {
         }
         stage('Conexao SSH') {
             steps {         
-                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp')]) {
-                    sh 'echo Hello, World!'
-                    sh 'mkdir teste'
-                }  
+                withCredentials([sshUserPrivateKey(credentialsId: 'AWS-SSH-EC2', keyFileVariable: 'AWS-SSH-EC2')]) {
+                    sh 'ssh ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com'
+                }
             }
-            
         }
     }
 }
