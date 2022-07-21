@@ -14,10 +14,10 @@ pipeline {
             }
         }
         stage('Conexao SSH') {
-            steps {             
-                sshagent(credentials:['SSH_AWS_SERVER']){
+            steps {         
+                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp', usernameVariable: 'SSH_AWS_SERVER')]) {
                     sh 'ssh ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com'
-                }
+                }    
             }
         }
     }
