@@ -13,11 +13,9 @@ pipeline {
                 }  
             }
         }
-        stage('Conexao SSH') {
+        stage('Ansible') {
             steps {         
-                withCredentials([sshUserPrivateKey(credentialsId: 'AWS-SSH-EC2', keyFileVariable: 'AWS-SSH-EC2')]) {
-                    sh 'ssh ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com'
-                }
+                sh 'ansible-playbook playbook.yml -u ec2-user --private-key ssh-prod-meuapp.pem -i hosts.yml'
             }
         }
     }
