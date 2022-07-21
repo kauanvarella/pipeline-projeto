@@ -15,8 +15,8 @@ pipeline {
         }
         stage('Conexao SSH') {
             steps {         
-                withCredentials([sshUserPrivateKey(credentialsId: 'SSH_AWS_SERVER', keyFileVariable: 'ssh-prod-meuapp', usernameVariable: 'SSH_AWS_SERVER')]) {
-                    sh 'ssh ec2-user@ec2-44-241-205-98.us-west-2.compute.amazonaws.com'
+                withCredentials([sshUserPrivateKey(credentialsId: 'terraform-aws', keyFileVariable: 'ssh-prod-meuapp', usernameVariable: 'SSH_AWS_SERVER')]) {
+                    sh 'echo Hello, World!'
                 }    
             }
         }
