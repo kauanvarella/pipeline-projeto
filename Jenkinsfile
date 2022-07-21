@@ -18,7 +18,7 @@ pipeline {
                 sh 'export PATH=$PATH:/usr/bin'
                 sh 'pwd'
                 sh 'echo $PATH'
-                // ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
+                ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
             }
         }
     }
