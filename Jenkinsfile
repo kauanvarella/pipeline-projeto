@@ -16,7 +16,7 @@ pipeline {
         stage('Ansible') {
             steps {
                 sh 'pwd'
-                sh 'echo $PATH'
+                sh 'ls'
                 ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
             }
         }
