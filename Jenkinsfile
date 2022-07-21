@@ -13,10 +13,5 @@ pipeline {
                 }  
             }
         }
-        stage ('Testando conexão SSH')  {
-            steps{
-                echo 'TESTE'
-            }
-        }
     }
 }
