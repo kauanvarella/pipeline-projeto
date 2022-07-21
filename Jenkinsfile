@@ -6,17 +6,9 @@ pipeline {
         stage('Provisionando Infraestrutura') {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    echo 'Destruindo Infra'
-                    echo 'Destruindo Infra'
-                    echo 'Destruindo Infra'
-                    sh 'terraform destroy -auto-approve'
-                    echo 'Iniciando o Terraform'
-                    echo 'Iniciando o Terraform'
-                    echo 'Iniciando o Terraform'
+                    echo 'INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM'
                     sh 'terraform init'
-                    echo 'Aplicando o Terraform'
-                    echo 'Aplicando o Terraform'
-                    echo 'Aplicando o Terraform'
+                    echo 'APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM'
                     sh 'terraform apply -auto-approve'
                 }  
             }
