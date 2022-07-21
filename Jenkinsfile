@@ -14,7 +14,8 @@ pipeline {
             }
         }
         stage('Ansible') {
-            steps {         
+            steps {
+                sh 'export PATH=$PATH:/root/.local/bin'         
                 sh 'ansible-playbook playbook.yml -u ec2-user --private-key ssh-prod-meuapp.pem -i hosts.yml'
             }
         }
