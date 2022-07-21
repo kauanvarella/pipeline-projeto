@@ -15,9 +15,7 @@ pipeline {
         }
         stage('Ansible') {
             steps {
-                sh 'export PATH=$PATH:/bin'
-                sh 'export PATH=$PATH:/home/kauan/.jenkins/workspace/pipeline-projeto'
-                sh 'ls /home/kauan/.jenkins/workspace/pipeline-projeto'
+                sh 'export PATH=$PATH:/usr/bin'
                 sh 'pwd'
                 sh 'echo $PATH'
                 // ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
