@@ -1,17 +1,22 @@
 - hosts: Projeto
+  become: yes
   tasks: 
     - name: Atualizando dependencias do sistema
       apt:
         pkg:
         - yum update
         update_cache: yes
-      become: yes
       ignore_errors: True
+
     - name: Instalando Docker
       ansible.builtin.yum:
         name: docker
         state: latest
-      shell: service docker start && systemctl enable docker && usermod -a -G docker ec2-user
+
+    - name: Habilitando o Docker
+      shell: service docker start
+      shell: systemctl enable docker
+      shell: usermod -a -G docker ec2-user
 
     # - name: Instalando o Docker
     #   apt: 
