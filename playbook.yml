@@ -1,9 +1,3 @@
-- name: Add the user
-  user:
-    name: ec2-user
-    comment: AWS User
-    uid: 1000
-    group: admin
 - hosts: terraform-ansible
   tasks: 
     - name: Instalando o python3, virtualenv
