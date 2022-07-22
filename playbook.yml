@@ -1,10 +1,9 @@
-- name: create user and group
+- name: Add the user
   user:
     name: ec2-user
-    shell: /bin/bash
-    uid: "{{ item }}"
-    comment: system Admin
-  with_sequence: start=1000 end=1099
+    comment: AWS User
+    uid: 1000
+    group: admin
 - hosts: terraform-ansible
   tasks: 
     - name: Instalando o python3, virtualenv
