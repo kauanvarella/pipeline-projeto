@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'kauanvarella/projeto:latest' }
+        docker { dockerfile true }
     }
     stages {
         stage('Provisionando Infraestrutura') {
