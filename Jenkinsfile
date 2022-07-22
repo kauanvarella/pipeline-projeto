@@ -15,7 +15,7 @@ pipeline {
             steps {
                 sh 'chmod 600 ssh-prod-meuapp.pem'
                 // ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'playbook.yml'
-                sh 'ansible-playbook playbook.yml -i hosts.yml --user ec2-user --key-file ssh-prod-meuapp.pem
+                sh 'ansible-playbook playbook.yml -i hosts.yml --user ec2-user --key-file ssh-prod-meuapp.pem'
             }
         }
     }
