@@ -16,6 +16,7 @@ pipeline {
         stage('Ansible') {
             steps {
                 sh 'ls /usr/bin/'
+                sh 'ansible --version'
                 // ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'playbook.yml'
             }
         }
