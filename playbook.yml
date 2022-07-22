@@ -13,4 +13,4 @@
       shell: git clone https://github.com/kauanvarella/meu-app.git
       shell: cd meu-app/
       shell: sudo chown $USER /var/run/docker.sock
-      shell: sudo docker-compose up -d
+      # shell: sudo docker-compose up -d
