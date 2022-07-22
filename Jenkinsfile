@@ -16,7 +16,7 @@ pipeline {
         stage('Ansible') {
             steps {
                 // ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
-                sh 'ansible --version'
+                sh 'which ansible'
             }
         }
     }
