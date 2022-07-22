@@ -18,3 +18,4 @@ RUN sed -i.bkp '17c\remote_tmp = ~/tmp' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '18c\local_tmp = ~/tmp' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '259c\retry_files_save_path = ~/ansible-retry' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '381c\control_path_dir = /tmp/ansible/cp' /etc/ansible/ansible.cfg
+RUN useradd ec2-user --uid 1000
