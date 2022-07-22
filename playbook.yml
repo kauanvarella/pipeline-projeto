@@ -1,23 +1,18 @@
 - hosts: terraform-ansible
   tasks: 
-    - name: Instalando o python3, virtualenv
-      apt:
-        pkg:
-        - python3
-        - virtualenv
+    - name: Instalando o Docker e o Docker Compose
+      shell: sudo yum update -y
+      shell: sudo amazon-linux-extras install docker -y
+      shell: sudo service docker start
+      shell: sudo systemctl enable docker
+      shell: sudo usermod -a -G docker ec2-user
+      shell: sudo yum install git -y
+      shell: sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      shell: sudo chmod +x /usr/local/bin/docker-compose
+      shell: git clone https://github.com/kauanvarella/meu-app.git
+      shell: cd meu-app/
+      shell: sudo chown $USER /var/run/docker.sock
+      shell: sudo docker-compose up -d
         update_cache: yes
       become: yes
-    - name: Instalando dependencias com pip (Django e Django Rest)
-      pip:
-        virtualenv: /home/ec2-user/tcc/venv
-        name: 
-          - django
-          - djangorestframework
-    - name: Iniciando o projeto
-      shell: '. /home/ec2-user/tcc/venv/bin/activate; django-admin startproject setup /home/ec2-user/tcc'
-    - name: Alterando nome do settings
-      lineinfile:
-        path: /home/ec2-user/tcc/setup/settings.py
-        regexp: 'ALLOWED_HOSTS'
-        line: 'ALLOWED_HOSTS = ["*"]'
-        backrefs: yes   #Se não encontrar a linha, não mexe no arquivo
+
