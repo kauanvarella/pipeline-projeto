@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile {args '-v /etc/passwd:/etc/passwd:kauan'} }
+    agent { dockerfile {args '-v /etc/passwd:/etc/passwd'} }
     stages {
         // stage('Provisionando Infraestrutura') {
         //     steps {
