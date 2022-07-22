@@ -5,6 +5,7 @@
         pkg:
         - yum update
       become: yes
+      ignore_errors: True
 
 
     # - name: Instalando o Docker
