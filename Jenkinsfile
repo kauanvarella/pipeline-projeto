@@ -15,8 +15,7 @@ pipeline {
         }
         stage('Ansible') {
             steps {
-                // ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: 'hosts.yml', playbook: 'playbook.yml')
-                sh 'which ansible'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'playbook.yml'
             }
         }
     }
