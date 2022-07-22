@@ -16,13 +16,15 @@
         name: docker
         state: latest
 
-    - name: Habilitando o Docker
-      shell: service docker start
-      shell: systemctl enable docker
+    - name: Iniciando o Docker
+      service:
+        name: docker
+        state: started
+      become: true
 
-    - name: Dando permissoes para o Docker
+    - name: Habilitando o Docker
+      shell: systemctl enable docker
       shell: usermod -a -G docker ec2-user
-      shell: service docker start
       shell: chown $USER /var/run/docker.sock
 
     - name: Instalando o Git
