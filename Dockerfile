@@ -21,4 +21,4 @@ RUN sed -i.bkp '381c\control_path_dir = /tmp/ansible/cp' /etc/ansible/ansible.cf
 ARG USER_ID=1000
 ARG GROUP_ID=1000
 RUN groupadd -g $GROUP_ID user && \
-    useradd -u $USER_ID -s /bin/sh -g user kauan
+    useradd -u $USER_ID -s /bin/sh -g user root
