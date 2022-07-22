@@ -1,7 +1,6 @@
 - hosts: Projeto
   tasks: 
     - name: Instalando o Docker e o Docker Compose
-      shell: mkdir pastateste
       shell: yum update -y
       shell: amazon-linux-extras install docker -y
       shell: service docker start
