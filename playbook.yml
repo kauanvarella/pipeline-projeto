@@ -3,8 +3,8 @@
     - name: Atualizando dependencias do sistema
       apt:
         pkg:
-          - yum update
-          update_cache: yes
+        - yum update
+        update_cache: yes
       become: yes
 
 
