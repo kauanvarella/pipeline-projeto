@@ -1,14 +1,5 @@
 pipeline {
-    environment {
-        JAVA_OPTS="-Duser.home=${JENKINS_HOME}"
-        MAVEN_OPTS="${JAVA_OPTS}"
-        MAVEN_CONFIG="${JENKINS_HOME}/.m2"  // docker/maven specific.
-    }
-    agent {
-        dockerfile {
-            args "-e HOME=${JENKINS_HOME}"
-        }
-    }
+    agent { dockerfile true }
     stages {
         // stage('Provisionando Infraestrutura') {
         //     steps {
