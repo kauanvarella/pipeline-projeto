@@ -34,7 +34,7 @@
 
     - name: Git Clone da aplicacao e entrando no diretorio
       shell: git clone https://github.com/kauanvarella/meu-app.git
-      command: cd meu-app/
+      shell: cd ./meu-app/
 
     - name: Instalando o Docker Compose
       shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
