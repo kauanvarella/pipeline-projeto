@@ -14,3 +14,4 @@ RUN sudo apt update
 RUN sudo apt install software-properties-common -y
 RUN sudo add-apt-repository --yes --update ppa:ansible/ansible
 RUN sudo apt-get install ansible -y
+RUN sed -i.bkp '18c\local_tmp = ~/tmp' /etc/ansible/ansible.cfg
