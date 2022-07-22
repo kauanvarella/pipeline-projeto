@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'pwd'
                 sh 'ls'
-                ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: '/home/kauan/.jenkins/workspace/pipeline-projeto', playbook: 'playbook.yml')
+                ansiblePlaybook(credentialsId: 'ssh-prod-meuapp.pem', inventory: './hosts.yml', playbook: './playbook.yml')
             }
         }
     }
