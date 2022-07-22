@@ -1,5 +1,5 @@
 pipeline {
-    agent { dockerfile true }
+    agent { dockerfile {additionalBuildArgs '-v /etc/passwd:/etc/passwd:ro'} }
     stages {
         // stage('Provisionando Infraestrutura') {
         //     steps {
