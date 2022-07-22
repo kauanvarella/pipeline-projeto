@@ -2,14 +2,12 @@
   become: yes
   tasks: 
     - name: Atualizando dependencias do sistema
-      apt:
-        pkg:
-        - yum update
+      yum:
+        name: update
         update_cache: yes
-      ignore_errors: True
 
     - name: Instalando Docker
-      ansible.builtin.yum:
+      yum:
         name: docker
         state: latest
 
@@ -17,6 +15,15 @@
       shell: service docker start
       shell: systemctl enable docker
       shell: usermod -a -G docker ec2-user
+
+    - name: Instalando o Git
+      yum:
+        name: git
+        state: latest
+
+    - name: Git Clone da aplicação e entrando no diretório
+      shell: git clone https://github.com/kauanvarella/meu-app.git
+      shell: cd /meu-app/
 
     # - name: Instalando o Docker
     #   apt: 
