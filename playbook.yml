@@ -17,10 +17,10 @@
         state: latest
 
     - name: Habilitando o Docker
-      shell: service docker start
-      shell: systemctl enable docker
-      shell: usermod -a -G docker ec2-user
-      shell: chown $USER /var/run/docker.sock
+      shell: sudo service docker start
+      shell: sudo systemctl enable docker
+      shell: sudo usermod -a -G docker ec2-user
+      shell: sudo chown $USER /var/run/docker.sock
 
     - name: Instalando o Git
       yum:
@@ -33,7 +33,7 @@
 
     - name: Instalando o Docker Compose
       shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      shell: chmod +x /usr/local/bin/docker-compose
+      shell: sudo chmod +x /usr/local/bin/docker-compose
 
     - name: Subindo a aplicacao
       shell: docker-compose up -d
