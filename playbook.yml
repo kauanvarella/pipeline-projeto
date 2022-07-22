@@ -2,17 +2,15 @@
   tasks: 
     - name: Instalando o Docker e o Docker Compose
       shell: mkdir pastateste
-      # shell: sudo yum update -y
-      # shell: sudo amazon-linux-extras install docker -y
-      # shell: sudo service docker start
-      # shell: sudo systemctl enable docker
-      # shell: sudo usermod -a -G docker ec2-user
-      # shell: sudo yum install git -y
-      # shell: sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      # shell: sudo chmod +x /usr/local/bin/docker-compose
-      # shell: git clone https://github.com/kauanvarella/meu-app.git
-      # shell: cd meu-app/
-      # shell: sudo chown $USER /var/run/docker.sock
-      # shell: sudo docker-compose up -d
-      # become: yes
-
+      shell: sudo yum update -y
+      shell: sudo amazon-linux-extras install docker -y
+      shell: sudo service docker start
+      shell: sudo systemctl enable docker
+      shell: sudo usermod -a -G docker ec2-user
+      shell: sudo yum install git -y
+      shell: sudo curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      shell: sudo chmod +x /usr/local/bin/docker-compose
+      shell: git clone https://github.com/kauanvarella/meu-app.git
+      shell: cd meu-app/
+      shell: sudo chown $USER /var/run/docker.sock
+      shell: sudo docker-compose up -d
