@@ -3,7 +3,7 @@
   tasks: 
     - name: Atualizando dependencias do sistema
       yum:
-        name: update
+        name: '*'
         update_cache: yes
 
     - name: Instalando Docker
