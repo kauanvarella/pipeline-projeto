@@ -1,7 +1,12 @@
 pipeline {
+    environment {
+        JAVA_OPTS="-Duser.home=${JENKINS_HOME}"
+        MAVEN_OPTS="${JAVA_OPTS}"
+        MAVEN_CONFIG="${JENKINS_HOME}/.m2"  // docker/maven specific.
+    }
     agent {
         dockerfile {
-            additionalBuildArgs '--build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g)'
+            args "-e HOME=${JENKINS_HOME}"
         }
     }
     stages {

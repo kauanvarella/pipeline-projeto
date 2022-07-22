@@ -18,8 +18,3 @@ RUN sed -i.bkp '17c\remote_tmp = ~/tmp' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '18c\local_tmp = ~/tmp' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '259c\retry_files_save_path = ~/ansible-retry' /etc/ansible/ansible.cfg
 RUN sed -i.bkp '381c\control_path_dir = /tmp/ansible/cp' /etc/ansible/ansible.cfg
-ARG USER_ID=1000
-ARG GROUP_ID=1000
-RUN groupadd -g $GROUP_ID user && \
-    useradd -u $USER_ID -s /bin/sh -g user ec2-user
-RUN sudo usermod -aG sudo ec2-user
