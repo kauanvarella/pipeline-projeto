@@ -6,6 +6,11 @@
         name: '*'
         update_cache: yes
 
+    - name: Instalando Polkit
+      yum:
+        name: polkit
+        update_cache: yes
+
     - name: Instalando Docker
       yum:
         name: docker
