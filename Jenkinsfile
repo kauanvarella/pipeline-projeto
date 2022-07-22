@@ -14,6 +14,9 @@ pipeline {
         stage('Ansible') {
             steps {
                 sh 'chmod 600 ssh-prod-meuapp.pem'
+                sh 'id'
+                sh 'id root'
+                sh 'id kauan'
                 // ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.inv', playbook: 'playbook.yml'
                 // sh 'ansible-playbook playbook.yml -i hosts.yml --user ec2-user --key-file ssh-prod-meuapp.pem'
                 // sh 'ssh -o StrictHostKeyChecking=no -i "ssh-prod-meuapp.pem" ec2-user@ec2-34-211-224-42.us-west-2.compute.amazonaws.com'
