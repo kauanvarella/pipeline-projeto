@@ -1,7 +1,7 @@
 - hosts: Projeto
   become: yes
   tasks: 
-    - name: Atualizando dependencias do sistema
+    - name: Atualizando pacotes do sistema
       yum:
         name: '*'
         update_cache: yes
@@ -15,6 +15,7 @@
       shell: service docker start
       shell: systemctl enable docker
       shell: usermod -a -G docker ec2-user
+      shell: chown $USER /var/run/docker.sock
 
     - name: Instalando o Git
       yum:
@@ -23,23 +24,24 @@
 
     - name: Git Clone da aplicacao e entrando no diretorio
       shell: git clone https://github.com/kauanvarella/meu-app.git
-      # shell: cd /meu-app/
+      shell: cd meu-app/
 
-    # - name: Instalando o Docker
-    #   apt: 
+    - name: Instalando o Docker Compose
+      shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      shell: chmod +x /usr/local/bin/docker-compose
 
-    #   shell: yum update -y
-    #   shell: amazon-linux-extras install docker -y
-    #   shell: service docker start
-    #   shell: systemctl enable docker
-    #   shell: usermod -a -G docker ec2-user
+    #   shell: yum update -y  XXX
+    #   shell: amazon-linux-extras install docker -y XXX
+    #   shell: service docker start XXX
+    #   shell: systemctl enable docker XXX
+    #   shell: usermod -a -G docker ec2-user XXX
 
 
-    #   shell: yum install git -y
-    #   shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-    #   shell: chmod +x /usr/local/bin/docker-compose
-    #   shell: git clone https://github.com/kauanvarella/meu-app.git
-    #   shell: cd meu-app/
-    #   shell: chown $USER /var/run/docker.sock
+    #   shell: yum install git -y XXX
+    #   shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose XXX
+    #   shell: chmod +x /usr/local/bin/docker-compose XXX
+    #   shell: git clone https://github.com/kauanvarella/meu-app.git XXX 
+    #   shell: cd meu-app/ XXX
+    #   shell: chown $USER /var/run/docker.sock XXX
     #   shell: sudo docker-compose up -d
     #   become: yes
