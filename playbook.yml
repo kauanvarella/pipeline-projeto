@@ -7,7 +7,6 @@
         update_cache: yes
       become: yes
       ignore_errors: True
-
     - name: Instalando Docker
       ansible.builtin.yum:
         name: docker
