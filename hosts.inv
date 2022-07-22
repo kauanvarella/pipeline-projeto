@@ -1,2 +1,2 @@
 [terraform-ansible]
-34.211.224.42 ansible_user=ec2-user
+34.211.224.42 ansible_user=kauan
