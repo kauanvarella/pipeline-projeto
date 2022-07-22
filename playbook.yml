@@ -21,9 +21,9 @@
         name: git
         state: latest
 
-    - name: Git Clone da aplicação e entrando no diretório
+    - name: Git Clone da aplicacao e entrando no diretorio
       shell: git clone https://github.com/kauanvarella/meu-app.git
-      shell: cd /meu-app/
+      # shell: cd /meu-app/
 
     # - name: Instalando o Docker
     #   apt: 
