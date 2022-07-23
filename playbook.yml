@@ -21,17 +21,17 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
-    - name: Instalando o Docker Compose
-      apt:
-        name: docker-compose
+    # - name: Instalando o Docker Compose
+    #   apt:
+    #     name: docker-compose
 
-    - name: Permissao de execucao Docker Compose
-      file: dest=/usr/bin/docker-compose mode=a+x
+    # - name: Permissao de execucao Docker Compose
+    #   file: dest=/usr/bin/docker-compose mode=a+x
 
-    - name: Instalando o Git
-      apt:
-        name: git
-        state: latest
+    # - name: Instalando o Git
+    #   apt:
+    #     name: git
+    #     state: latest
 
     # - name: Clonando o repositorio
     #   git:
