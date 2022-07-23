@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-    ami = "ami-0b152cfd354c4c7a4"
+    ami = "ami-071e6cafc48327ca2"
     instance_type = var.instancia
     key_name = var.chave
     tags = {
