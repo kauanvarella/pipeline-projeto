@@ -2,27 +2,22 @@
   become: yes
   tasks: 
     - name: Atualizando pacotes do sistema
-      yum:
+      apt:
         name: '*'
         update_cache: yes
       
-    - name: Instalando Python 3.7
-      yum: 
-        name: python37
-        update_cache: yes
-      
     - name: Instalando Pip
-      yum:
+      apt:
         name: python3-pip
         update_cache: yes
     
     - name: Instalando Polkit
-      yum:
+      apt:
         name: polkit
         update_cache: yes
 
     - name: Instalando Docker
-      yum:
+      apt:
         name: docker
         state: latest
 
@@ -48,7 +43,7 @@
       file: dest=/usr/local/bin/docker-compose mode=a+x
 
     - name: Instalando o Git
-      yum:
+      apt:
         name: git
         state: latest
 
