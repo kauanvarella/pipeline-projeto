@@ -1,7 +1,7 @@
 pipeline {
     agent { dockerfile true }
     stages {       
-        stage('Provisionando Infraestrutura') {
+        stage('Provisionando Infraestrutura com Terraform') {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     echo 'DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA'
@@ -13,7 +13,7 @@ pipeline {
                 }  
             }
         }
-        stage('Configurando a instancia com Ansible') {
+        stage('Instalando as dependencias com Ansible') {
             steps {
                 sh 'sleep 10'
                 sh 'chmod 600 ssh-prod-meuapp.pem'
