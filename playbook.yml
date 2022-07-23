@@ -6,14 +6,6 @@
         name: '*'
         update_cache: yes
       
-    - name: Instalando Python 3.7
-      yum: 
-        name: python37
-        update_cache: yes
-
-    - name: Alterando a versao do Python
-      shell: alias python=python3
-      
     - name: Instalando Pip
       yum:
         name: python3-pip
