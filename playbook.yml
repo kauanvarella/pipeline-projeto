@@ -27,18 +27,23 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
+    - name: Instalando o Docker Compose
+      shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      shell: chmod +x /usr/local/bin/docker-compose
+
     - name: Instalando o Git
       yum:
         name: git
         state: latest
 
-    - name: Git Clone da aplicacao e entrando no diretorio
-      shell: git clone https://github.com/kauanvarella/meu-app.git
-      shell: cd meu-app
-
-    - name: Instalando o Docker Compose
-      shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-      shell: chmod +x /usr/local/bin/docker-compose
-
-    - name: Subindo a aplicacao
-      shell: docker-compose up -d
+    - name: Git Clone
+      ansible.builtin.git:
+        repo: https://github.com/kauanvarella/meu-app.git
+        dest: /home/ec2-user
+        single_branch: yes
+        version: master
+        
+    - name: Subindo o Docker Compose
+      community.docker.docker_compose:
+        project_src: /home/ec2-user/meu-app
+      register: output
