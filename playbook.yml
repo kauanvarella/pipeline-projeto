@@ -27,6 +27,11 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
+    - name: Instalando o modulo Docker
+      yum:
+        name: python3-docker
+        update_cache: yes
+
     - name: Instalando o Docker Compose
       shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 
@@ -41,12 +46,12 @@
     - name: Clonando o repositorio
       git:
         repo: https://github.com/kauanvarella/meu-app.git
-        dest: /home/ec2-user/gitclone
+        dest: /home/ec2-user/projeto-app
         clone: yes
         version: master
         update: yes
 
     - name: Subindo o Docker Compose
       docker_compose:
-        project_src: /home/ec2-user/gitclone/meu-app
+        project_src: /home/ec2-user/projeto-app
       register: output
