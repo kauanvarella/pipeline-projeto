@@ -44,4 +44,4 @@
     - name: Subindo o Docker Compose
       docker_compose:
         project_src: /home/ubuntu/projeto-app
-      become: true
+      register: output
