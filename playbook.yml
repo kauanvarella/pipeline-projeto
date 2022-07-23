@@ -5,21 +5,10 @@
       apt:
         name: '*'
         update_cache: yes
-      
-    - name: Instalando Pip
-      apt:
-        name: python3-pip
-        update_cache: yes
-    
-    # - name: Instalando Polkit
-    #   apt:
-    #     name: polkit
-    #     update_cache: yes
 
     - name: Instalando Docker
       apt:
-        name: docker
-        state: latest
+        name: docker.io
 
     - name: Iniciando o servico do Docker
       service:
@@ -32,12 +21,9 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
-    - name: Instalando Docker SDK Python
-      pip:
-        name: docker
-
     - name: Instalando o Docker Compose
-      shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+      apt:
+        name: docker-compose
 
     - name: Permissao de execucao Docker Compose
       file: dest=/usr/local/bin/docker-compose mode=a+x
