@@ -11,10 +11,10 @@
         name: python3-pip
         update_cache: yes
     
-    - name: Instalando Polkit
-      apt:
-        name: polkit
-        update_cache: yes
+    # - name: Instalando Polkit
+    #   apt:
+    #     name: polkit
+    #     update_cache: yes
 
     - name: Instalando Docker
       apt:
