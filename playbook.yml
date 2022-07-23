@@ -38,12 +38,12 @@
         name: git
         state: latest
 
-    - name: Git Clone
-      ansible.builtin.git:
+    - name: Clonando o repositorio
+      git:
         repo: https://github.com/kauanvarella/meu-app.git
         dest: /home/ec2-user
-        single_branch: yes
-        version: master
+        clone: yes
+        update: yes
 
     - name: Subindo o Docker Compose
       docker_compose:
