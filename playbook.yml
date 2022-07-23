@@ -1,4 +1,4 @@
-- hosts: Projeto
+- hosts: Projeto-infra
   become: yes
   tasks: 
     - name: Atualizando pacotes do sistema
@@ -33,15 +33,15 @@
         name: git
         state: latest
 
-    - name: Clonando o repositorio
-      git:
-        repo: https://github.com/kauanvarella/meu-app.git
-        dest: /home/ubuntu/projeto-app
-        clone: yes
-        version: master
-        update: yes
+    # - name: Clonando o repositorio
+    #   git:
+    #     repo: https://github.com/kauanvarella/meu-app.git
+    #     dest: /home/ubuntu/projeto-app
+    #     clone: yes
+    #     version: master
+    #     update: yes
 
-    - name: Subindo o Docker Compose
-      docker_compose:
-        project_src: /home/ubuntu/projeto-app
-      register: output
+    # - name: Subindo o Docker Compose
+    #   docker_compose:
+    #     project_src: /home/ubuntu/projeto-app
+    #   register: output
