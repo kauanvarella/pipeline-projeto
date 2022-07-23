@@ -27,16 +27,15 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
+    - name: Instalando Docker SDK Python
+      pip:
+        name: docker
+
     - name: Instalando o Docker Compose
       shell: curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 
     - name: Permissao de execucao Docker Compose
       file: dest=/usr/local/bin/docker-compose mode=a+x
-
-    - name: Instalando Docker SDK Python
-      pip:
-        name: docker
-        update_cache: yes
 
     - name: Instalando o Git
       yum:
