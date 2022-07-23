@@ -5,7 +5,7 @@
       yum:
         name: '*'
         update_cache: yes
-
+      
     - name: Instalando Polkit
       yum:
         name: polkit
@@ -33,6 +33,11 @@
     - name: Permissao de execucao Docker Compose
       file: dest=/usr/local/bin/docker-compose mode=a+x
 
+    - name: Instalando Docker SDK Python
+      pip:
+        name: docker
+        update_cache: yes
+
     - name: Instalando o Git
       yum:
         name: git
@@ -50,5 +55,3 @@
       docker_compose:
         project_src: /home/ec2-user/projeto-app
       become: true
-      vars:
-        ansible_python_interpreter: /bin/python3
