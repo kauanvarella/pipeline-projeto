@@ -26,7 +26,7 @@
         name: docker-compose
 
     - name: Permissao de execucao Docker Compose
-      file: dest=/usr/local/bin/docker-compose mode=a+x
+      file: dest=/usr/bin/docker-compose mode=a+x
 
     - name: Instalando o Git
       apt:
@@ -36,12 +36,12 @@
     - name: Clonando o repositorio
       git:
         repo: https://github.com/kauanvarella/meu-app.git
-        dest: /home/ec2-user/projeto-app
+        dest: /home/ubuntu/projeto-app
         clone: yes
         version: master
         update: yes
 
     - name: Subindo o Docker Compose
       docker_compose:
-        project_src: /home/ec2-user/projeto-app
+        project_src: /home/ubuntu/projeto-app
       become: true
