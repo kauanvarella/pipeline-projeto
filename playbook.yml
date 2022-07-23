@@ -13,7 +13,7 @@
       
     - name: Instalando pip
       yum:
-        name: python3-pip
+        name: python-pip
         update_cache: yes
 
     - name: Instalando Polkit
