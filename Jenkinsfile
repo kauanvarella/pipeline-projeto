@@ -1,18 +1,11 @@
 pipeline {
     agent { dockerfile true }
-    stages {
-        stage('Destruindo instancia se existir') {
-            steps {
-                if (sh 'ping 34.211.224.42' = true) {
-                    sh 'terraform destroy'
-                } else { 
-                    continue 
-                }
-            }
-        }        
+    stages {       
         stage('Provisionando Infraestrutura') {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                    echo 'DESTRUINDO TERRAFORM - DESTRUINDO TERRAFORM - DESTRUINDO TERRAFORM - DESTRUINDO TERRAFORM - DESTRUINDO TERRAFORM  - DESTRUINDO TERRAFORM  - DESTRUINDO TERRAFORM '
+                    sh 'terraform destroy -auto-approve'
                     echo 'INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM  - INICIANDO TERRAFORM  - INICIANDO TERRAFORM '
                     sh 'terraform init'
                     echo 'APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM'
