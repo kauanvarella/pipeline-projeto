@@ -6,6 +6,16 @@
         name: '*'
         update_cache: yes
       
+    - name: Instalando Python3
+      yum: 
+        name: python3
+        update_cache: yes
+      
+    - name: Instalando pip
+      yum:
+        name: python3-pip
+        update_cache: yes
+
     - name: Instalando Polkit
       yum:
         name: polkit
