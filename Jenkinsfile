@@ -5,7 +5,7 @@ pipeline {
             steps {
                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     echo 'DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA - DESTRUINDO INFRA'
-                    sh 'terraform destroy --target aws_instance -auto-approve'
+                    sh 'terraform destroy -target aws_instance.app_server -auto-approve'
                     echo 'INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM  - INICIANDO TERRAFORM  - INICIANDO TERRAFORM '
                     sh 'terraform init'
                     echo 'APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM'
