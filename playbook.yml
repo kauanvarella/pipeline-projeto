@@ -28,11 +28,19 @@
     # - name: Permissao de execucao Docker Compose
     #   file: dest=/usr/bin/docker-compose mode=a+x
 
-    # - name: Instalando o Git
-    #   apt:
-    #     name: git
-    #     state: latest
+    - name: Instalando o Git
+      apt:
+        name: git
+        state: latest
 
+    - name: Instalando Pip
+      apt:
+        name: python3-pip
+
+    - name: Instalando Docker SDK Python
+      pip:
+        name: docker
+        
     # - name: Clonando o repositorio
     #   git:
     #     repo: https://github.com/kauanvarella/meu-app.git
