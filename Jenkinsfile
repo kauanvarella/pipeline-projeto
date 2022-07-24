@@ -12,7 +12,6 @@ pipeline {
                             echo 'continue'
                         }
                     }                    
-
                     echo 'INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM  - INICIANDO TERRAFORM  - INICIANDO TERRAFORM '
                     sh 'terraform init'
                     echo 'APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM - APLICANDO TERRAFORM'
