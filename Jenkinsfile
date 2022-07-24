@@ -9,7 +9,7 @@ pipeline {
                             echo 'DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA - DESTRUINDO INSTANCIA'
                             sh 'terraform destroy -target aws_instance.app_server -auto-approve'
                         } finally {
-                            echo 'continue'
+                            continue
                         }
                     }                    
                     echo 'INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM - INICIANDO TERRAFORM  - INICIANDO TERRAFORM  - INICIANDO TERRAFORM '
