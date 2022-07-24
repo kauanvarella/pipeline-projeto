@@ -21,13 +21,6 @@
       shell: usermod -a -G docker ec2-user
       shell: chown $USER /var/run/docker.sock
 
-    # - name: Instalando o Docker Compose
-    #   apt:
-    #     name: docker-compose
-
-    # - name: Permissao de execucao Docker Compose
-    #   file: dest=/usr/bin/docker-compose mode=a+x
-
     - name: Instalando o Git
       apt:
         name: git
@@ -41,15 +34,29 @@
       pip:
         name: docker
         
-    # - name: Clonando o repositorio
-    #   git:
-    #     repo: https://github.com/kauanvarella/meu-app.git
-    #     dest: /home/ubuntu/projeto-app
-    #     clone: yes
-    #     version: master
-    #     update: yes
+    - name: Container InfluxDB
+      docker_container:
+        name: influxdb
+        image: influxdb:1.0
+        state: started
+        ports:
+          - "8083:8083"
+          - "8086:8086"
+          - "25826:25826/udp"
+        volumes:
+          - /home/ubuntu/influxdb:/var/lib/influxdb
 
-    # - name: Subindo o Docker Compose
-    #   docker_compose:
-    #     project_src: /home/ubuntu/projeto-app
-    #   register: output
+    - name: Download Telegraf
+      get_url:
+        url: https://dl.influxdata.com/telegraf/releases/telegraf_1.5.2-1_amd64.deb
+        dest: /home/ubuntu/
+        mode: '0440'
+
+    - name: Instalando Telegraf
+      shell: dpkg -i telegraf_1.5.2-1_amd64.deb
+      
+    - name: Iniciando o servico do Telegraf
+      service:
+        name: telegraf
+        state: started
+      become: true
