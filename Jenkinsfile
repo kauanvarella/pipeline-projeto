@@ -1,22 +1,22 @@
 pipeline {
     agent { dockerfile true }
     stages {       
-        stage ('---------- Destruindo instancias existentes ----------') {
-            steps{
-                dir('./prod') {
-                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                        script {
-                            try {
-                                sh 'terraform destroy -target module.aws-prod.infra-main.aws_instance.app_server -auto-approve'
-                            } 
-                            catch (err) {
-                                echo 'Ainda nao existiam instancias, criando novas'
-                            }
-                        }                    
-                    } 
-                }
-            }
-        }
+        // stage ('---------- Destruindo instancias existentes ----------') {
+        //     steps{
+        //         dir('./prod') {
+        //             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+        //                 script {
+        //                     try {
+        //                         sh 'terraform destroy -target module.aws-prod.infra-main.aws_instance.app_server -auto-approve'
+        //                     } 
+        //                     catch (err) {
+        //                         echo 'Ainda nao existiam instancias, criando novas'
+        //                     }
+        //                 }                    
+        //             } 
+        //         }
+        //     }
+        // }
         stage('---------- Provisionando Infraestrutura de Producao ----------') {
             steps {
                 dir('./prod') {
