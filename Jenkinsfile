@@ -1,51 +1,69 @@
 pipeline {
     agent { dockerfile true }
     stages {       
-        // stage ('---------- Destruindo instancias existentes ----------') {
-        //     steps{
-        //         dir('./prod') {
-        //             withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-        //                 script {
-        //                     try {
-        //                         sh 'terraform destroy -target module.aws-prod.infra-main.aws_instance.app_server -auto-approve'
-        //                     } 
-        //                     catch (err) {
-        //                         echo 'Ainda nao existiam instancias, criando novas'
-        //                     }
-        //                 }                    
-        //             } 
-        //         }
-        //     }
-        // }
-        stage('---------- Provisionando Infraestrutura de Producao ----------') {
+    //     stage ('---------- Destruindo instancias existentes ----------') {
+    //         steps{
+    //             dir('./prod') {
+    //                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+    //                     script {
+    //                         try {
+    //                             sh 'terraform destroy -target module.aws-prod.infra-main.aws_instance.app_server -auto-approve'
+    //                         } 
+    //                         catch (err) {
+    //                             echo 'Ainda nao existiam instancias, criando novas'
+    //                         }
+    //                     }                    
+    //                 } 
+    //             }
+    //         }
+    //     }
+    //     stage('---------- Provisionando Infraestrutura de Producao ----------') {
+    //         steps {
+    //             dir('./prod') {
+    //                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
+    //                     sh 'terraform init'
+    //                     sh 'terraform apply -auto-approve'
+    //                 }  
+    //             }
+    //         }
+    //     }
+    //     stage('---------- Provisionando Infraestrutura de Homologacao ----------') {
+    //         steps {
+    //             dir('./homolog') {
+    //                 withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                   
+    //                     sh 'terraform init'
+    //                     sh 'terraform apply -auto-approve'
+    //                 }  
+    //             }
+    //         }
+    //     }
+    //     stage('---------- Instalando as dependencias ----------') {
+    //         steps {
+    //             sh 'sleep 15'
+    //             dir('./infra') {
+    //                 sh 'chmod 600 ssh-prod-meuapp.pem'
+    //             }
+    //             ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-prod.yml'
+    //             ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-homolog.yml'
+    //         }
+    //     }
+    // }
+        stage('DESTRUINDO TUDO') {
             steps {
                 dir('./prod') {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
-                        sh 'terraform init'
-                        sh 'terraform apply -auto-approve'
+                        sh 'terraform destroy -auto-approve'
                     }  
                 }
             }
         }
-        stage('---------- Provisionando Infraestrutura de Homologacao ----------') {
+        stage('DESTRUINDO TUDO PT2') {
             steps {
                 dir('./homolog') {
-                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                   
-                        sh 'terraform init'
-                        sh 'terraform apply -auto-approve'
+                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
+                        sh 'terraform destroy -auto-approve'
                     }  
                 }
             }
         }
-        stage('---------- Instalando as dependencias ----------') {
-            steps {
-                sh 'sleep 15'
-                dir('./infra') {
-                    sh 'chmod 600 ssh-prod-meuapp.pem'
-                }
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-prod.yml'
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-homolog.yml'
-            }
-        }
-    }
 }
