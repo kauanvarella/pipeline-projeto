@@ -7,7 +7,7 @@ pipeline {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
                             try {
-                                sh 'terraform destroy -target aws_instance.app_server -auto-approve'
+                                sh 'terraform destroy -target module.aws-prod.aws_instance.app_server -auto-approve'
                             } 
                             catch (err) {
                                 echo 'Ainda nao existiam instancias de producao, criando uma nova'
@@ -25,7 +25,7 @@ pipeline {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
                             try {
-                                sh 'terraform destroy -target aws_instance.app_server -auto-approve'
+                                sh 'terraform destroy -target module.aws-homolog.aws_instance.app_server -auto-approve'
                             } 
                             catch (err) {
                                 echo 'Ainda nao existiam instancias de homologacao, criando uma nova'
