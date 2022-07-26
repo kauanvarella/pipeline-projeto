@@ -43,12 +43,12 @@ pipeline {
                 dir('./infra') {
                     sh 'chmod 600 ssh-prod-meuapp.pem'
                 }
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-prod.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-infra-prod.yml', playbook: 'playbook-infra.yml'
             }
         }
         stage('---------- Instalando as dependencias de homologacao ----------') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'playbook-infra-homolog.yml'
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-infra-homolog.yml', playbook: 'playbook-infra.yml'
             }
         }        
     }
