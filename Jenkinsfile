@@ -7,7 +7,7 @@ pipeline {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
                             try {
-                                sh 'terraform destroy -target aws_instance.app_server -auto-approve'
+                                sh 'terraform destroy -target module.aws-prod.infra-main.aws_instance.app_server -auto-approve'
                             } 
                             catch (err) {
                                 echo 'Ainda nao existia infra de producao, criando uma nova'
@@ -21,11 +21,11 @@ pipeline {
         }
         stage('---------- Provisionando Infraestrutura de Homologacao ----------') {
             steps {
-                dir('../homolog') {
+                dir('./homolog') {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
                             try {
-                                sh 'terraform destroy -target aws_instance.app_server -auto-approve'
+                                sh 'terraform destroy -target module.aws-homolog.infra-main.aws_instance.app_server -auto-approve'
                             } 
                             catch (err) {
                                 echo 'Ainda nao existia infra de homologacao, criando uma nova'
