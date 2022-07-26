@@ -1,6 +1,6 @@
 resource "aws_security_group" "acesso_prod" {
-  name = "acesso_prod"
-  description = "grupo de Prod"
+  name = var.gruposeguranca
+  description = var.gruposeguranca
   ingress{
       cidr_blocks = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
@@ -16,6 +16,6 @@ resource "aws_security_group" "acesso_prod" {
       protocol = "-1"
   }
   tags = {
-      Name = "acesso_prod"
+      Name = var.gruposeguranca
   }
 }

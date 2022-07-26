@@ -1,15 +1,27 @@
 variable "regiao_aws" {
-  default = "us-west-2"
+  type = string
 }
 
 variable "chave" {
-  default = "ssh-prod-meuapp"
+  type = string
 }
 
 variable "instancia" {
-  default = "t2.micro"
+  type = string
 }
 
 variable "gruposeguranca" {
-  default = "acesso_prod"
+  type = string
+}
+
+variable "tagname" {
+  type = string
+}
+
+variable "ami" {
+  type = string
+}
+
+variable "pub_ip" {
+  type = string
 }

@@ -14,20 +14,16 @@ provider "aws" {
 }
 
 resource "aws_instance" "app_server" {
-    ami = "ami-0d70546e43a941d70"
+    ami = var.ami
     instance_type = var.instancia
     key_name = var.chave
     tags = {
-        Name = "meu-app"
+        Name = var.tagname
     }
     associate_public_ip_address = true
 }
 
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.app_server.id
-  allocation_id = "eipalloc-043143858d9147b05"
+  allocation_id = var.pub_ip
 }
-
-# output "IP_publico" {
-#   value = aws_instance.app_server.public_ip
-# }
