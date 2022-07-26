@@ -10,5 +10,5 @@ module "aws-homolog" {
 }
 
 provider "aws" {
-  region  = var.regiao_aws
+  region  = "us-west-2"
 }

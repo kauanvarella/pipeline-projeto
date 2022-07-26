@@ -10,5 +10,5 @@ module "aws-prod" {
 }
 
 provider "aws" {
-  region  = var.regiao_aws
+  region  = "us-west-2"
 }
