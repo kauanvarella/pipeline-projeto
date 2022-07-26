@@ -1,4 +1,4 @@
-resource "aws_security_group" "acesso_prod" {
+resource "aws_security_group" "acesso_projeto" {
   name = var.gruposeguranca
   description = var.gruposeguranca
   ingress{
