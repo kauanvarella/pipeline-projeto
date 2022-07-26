@@ -8,3 +8,7 @@ module "aws-prod" {
   ami = "ami-0d70546e43a941d70"
   pub_ip = "eipalloc-043143858d9147b05"
 }
+
+provider "aws" {
+  region  = var.regiao_aws
+}

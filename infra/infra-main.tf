@@ -9,10 +9,6 @@ terraform {
   required_version = ">= 1.1.0"
 }
 
-provider "aws" {
-  region  = var.regiao_aws
-}
-
 resource "aws_instance" "app_server" {
     ami = var.ami
     instance_type = var.instancia

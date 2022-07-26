@@ -8,3 +8,7 @@ module "aws-homolog" {
   ami = "ami-0d70546e43a941d70"
   pub_ip = "eipalloc-073ccad585620e5d0"
 }
+
+provider "aws" {
+  region  = var.regiao_aws
+}
