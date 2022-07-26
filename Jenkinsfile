@@ -1,6 +1,24 @@
 pipeline {
     agent { dockerfile true }
-    stages {       
+    stages {     
+        stage('DESTRUINDO TUDO') {
+            steps {
+                dir('./prod') {
+                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
+                        sh 'terraform destroy -auto-approve'
+                    }  
+                }
+            }
+        }
+        stage('DESTRUINDO TUDO PT2') {
+            steps {
+                dir('./homolog') {
+                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
+                        sh 'terraform destroy -auto-approve'
+                    }  
+                }
+            }
+        }  
     //     stage ('---------- Destruindo instancias existentes ----------') {
     //         steps{
     //             dir('./prod') {
@@ -48,22 +66,5 @@ pipeline {
     //         }
     //     }
     // }
-        stage('DESTRUINDO TUDO') {
-            steps {
-                dir('./prod') {
-                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
-                        sh 'terraform destroy -auto-approve'
-                    }  
-                }
-            }
-        }
-        stage('DESTRUINDO TUDO PT2') {
-            steps {
-                dir('./homolog') {
-                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
-                        sh 'terraform destroy -auto-approve'
-                    }  
-                }
-            }
-        }
+    }
 }
