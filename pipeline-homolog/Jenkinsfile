@@ -17,9 +17,11 @@ pipeline {
                             catch (err) {
                                 echo 'Ainda nao existiam instancias de homologacao, criando uma nova'
                             }
-                        }                    
+                        }
                         sh 'terraform init'
-                        sh 'terraform apply -auto-approve'
+                        sh 'terraform apply -target module.aws-homolog.aws_security_group.acesso_projeto -auto-approve'                    
+                        sh 'terraform apply -target module.aws-homolog.aws_instance.app_server -auto-approve'
+                        sh 'terraform apply -target module.aws-homolog.aws_eip_association.eip_assoc -auto-approve'
                     }  
                 }
             }
@@ -32,7 +34,7 @@ pipeline {
                 }     
             }
         }
-        stage('Deploy em homologacao') {
+        stage('Deploy do app em homologacao') {
             steps {
                 dir('./pipeline-homolog') {
                     ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-app.yml' 
@@ -56,6 +58,15 @@ pipeline {
                     }
                 }
             }
-        }                                      
+        }
+        stage('Snapshot e criacao da imagem para producao') {
+            steps {
+                dir('./pipeline-homolog') {
+                    withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
+                        sh 'terraform apply -target module.aws-homolog.aws_ami_from_instance.AMI_Prod -auto-approve'
+                    }  
+                }
+            }
+        }                                               
     }
 }
