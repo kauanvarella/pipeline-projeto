@@ -61,7 +61,7 @@ pipeline {
         }
         stage('Snapshot e criacao da imagem para producao') {
             steps {
-                dir('./pipeline-homolog') {
+                dir('./pipeline-homolog/homolog') {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         sh 'terraform apply -target module.aws-homolog.aws_ami_from_instance.AMI_Prod -auto-approve'
                     }  
