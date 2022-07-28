@@ -23,3 +23,7 @@ resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.app_server.id
   allocation_id = var.pub_ip
 }
+
+output "id_instancia" {
+  value = aws_instance.app_server.id
+}
