@@ -1,5 +1,9 @@
+data "aws_ami" "id_ami_instancia" {
+  most_recent = true
+}
+
 resource "aws_launch_template" "recurso-teste-asg" {
-  image_id = aws_ami_from_instance.AMI_Prod.id
+  image_id = data.aws_ami.id_ami_instancia.id
   instance_type = var.instancia
   user_data = filebase64("start.sh")
   security_group_names = [aws_security_group.acesso_projeto.name]
