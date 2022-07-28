@@ -1,5 +1,5 @@
 module "instancia_id" {
-  source = "../../infra-homolog"
+  source = "../../pipeline-homolog/infra-homolog"
 }
 
 resource "aws_ami_from_instance" "AMI_Prod" {
