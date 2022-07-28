@@ -26,6 +26,7 @@ pipeline {
         }
         stage('Instalando as dependencias de homologacao') {
             steps {
+                sh 'sleep 15'
                 dir('./pipeline-homolog') {
                     ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-infra.yml'
                 }     
