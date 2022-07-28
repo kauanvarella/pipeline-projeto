@@ -26,19 +26,25 @@ pipeline {
         }
         stage('Instalando as dependencias de homologacao') {
             steps {
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-infra.yml'
+                dir('./pipeline-homolog') {
+                    ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-infra.yml'
+                }     
             }
         }
         stage('Deploy em homologacao') {
-            steps {            
-                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-app.yml'                                    
+            steps {
+                dir('./pipeline-homolog') {
+                    ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts-homolog.yml', playbook: 'playbook-app.yml' 
+                }                                     
             }
         }
         stage('Testes automatizados') {
             steps {
-                sh 'echo PASSOU NO TESTE 1'
-                sh 'echo PASSOU NO TESTE 2'
-                sh 'echo PASSOU NO TESTE 3'
+                dir('./pipeline-homolog') {
+                    sh 'echo PASSOU NO TESTE 1'
+                    sh 'echo PASSOU NO TESTE 2'
+                    sh 'echo PASSOU NO TESTE 3'                    
+                }
             }
         }             
         stage('Aprovacao do deploy em producao') {
