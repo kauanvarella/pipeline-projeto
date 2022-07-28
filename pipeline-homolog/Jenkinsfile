@@ -8,7 +8,7 @@ pipeline {
         }                  
         stage('Provisionando Infraestrutura de Homologacao') {
             steps {
-                dir('./homolog') {
+                dir('./pipeline-homolog/homolog') {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                         script {
                             try {
