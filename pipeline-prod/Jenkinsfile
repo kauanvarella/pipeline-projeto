@@ -1,26 +1,25 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        // stage('Notificacao no Slack iniciando novo Deploy em Producao') {
-        //     steps {
-        //         slackSend (color: 'warning', message: '[ Em andamento ] Novo deploy iniciado em producao', tokenCredentialId: 'slack-token')
-        //     }
-        // }               
+        stage('Notificacao no Slack iniciando novo Deploy em Producao') {
+            steps {
+                slackSend (color: 'warning', message: '[ Em andamento ] Novo deploy iniciado em producao', tokenCredentialId: 'slack-token')
+            }
+        }               
         stage('Provisionando infraestrutura de producao') {
             steps {
                 dir('./pipeline-prod/prod') {
                     withCredentials([aws(accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'terraform-aws', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY')]) {                  
-                        // sh 'terraform init'
-                        // sh 'terraform apply -auto-approve'
-                        sh 'terraform destroy -auto-approve'
+                        sh 'terraform init'
+                        sh 'terraform apply -auto-approve'
                     }  
                 }
             }
         }
-        // stage('Notificacao no Slack') {
-        //     steps {
-        //         slackSend (color: 'good', message: '[ Sucesso ] Desploy efetuado com sucesso ', tokenCredentialId: 'slack-token')
-        //     }
-        // }         
+        stage('Notificacao no Slack') {
+            steps {
+                slackSend (color: 'good', message: '[ Sucesso ] Desploy efetuado com sucesso ', tokenCredentialId: 'slack-token')
+            }
+        }         
     }
 }
