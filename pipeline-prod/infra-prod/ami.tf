@@ -11,6 +11,6 @@ data "terraform_remote_state" "instancia" {
 
 resource "aws_ami_from_instance" "AMI_Prod" {
   name = "imagem-producao"
-  source_instance_id = data.terraform_remote_state.instancia.outputs.aws_instance.app_server.id
+  source_instance_id = data.terraform_remote_state.instancia.outputs.id_instancia
   snapshot_without_reboot = true
 } 
